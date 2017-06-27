@@ -20,10 +20,10 @@ public class Solution {
             mask = mask | (1 << i);
             Set<Integer> set = new HashSet<>();
             for (int num : nums) {
-                set.add(num & mask);
+                set.add(num & mask); // use mask to see only one bit of each num at a time and store them in a set
             }
 
-            int temp = max | (1 << i);
+            int temp = max | (1 << i); // temp is the max result we could get
             // Iterator<Integer> it = set.iterator();
             // while (it.hasNext()) {
             //     int num = it.next();
@@ -33,8 +33,10 @@ public class Solution {
             //     }
             // }
             for (int prefix : set) {
-                if (set.contains(tmp ^ prefix)) {
-                    max = tmp;
+                if (set.contains(temp ^ prefix)) { // tmp ^ pre1 = pre2 means pre1 ^ pre2 = tmp
+                                                   // It means we can get temp as to speak the specific bit
+                                                   // then give temp to max
+                    max = temp;
                     break;
                 }
             }
